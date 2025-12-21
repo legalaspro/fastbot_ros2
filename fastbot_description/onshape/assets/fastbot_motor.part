@@ -1,0 +1,14 @@
+{
+    "configuration": "default",
+    "documentId": "0c3baffe10fc544f872799ab",
+    "documentMicroversion": "4d5fb57b5558a94c0719a500",
+    "documentVersion": "9aaff4d88961a71699db03f3",
+    "elementId": "0c4e3fba8e2bab5bf0141380",
+    "fullConfiguration": "default",
+    "id": "MNyc2XsEHJs4+H20H",
+    "isStandardContent": false,
+    "name": "fastbot-motor <2>",
+    "partId": "JFD",
+    "suppressed": false,
+    "type": "Part"
+}

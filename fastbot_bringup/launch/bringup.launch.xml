@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <arg name="use_sim_time" default="False"/>
+    <arg name="robot_name" default="fastbot"/>
+    <arg name="robot_file" default="fastbot_multi_sim.xacro"/>
+    <arg name="serial_port" default="/dev/arduino_nano"/>
+    <arg name="serial_debug" default="False"/>
+    <arg name="baud_rate" default="57600"/>
+    <arg name="loop_rate" default="30"/>
+    <arg name="encoder_cpr" default="2550"/>
+
+    <!-- Differential serial motor driver -->
+    <include file="$(find-pkg-share serial_motor)/launch/serial_motor.launch.py">
+        <arg name="robot_name" value="$(var robot_name)"/>
+        <arg name="serial_port" value="$(var serial_port)"/>
+        <arg name="serial_debug" value="$(var serial_debug)"/>
+        <arg name="baud_rate" value="$(var baud_rate)"/>
+        <arg name="loop_rate" value="$(var loop_rate)"/>
+        <arg name="encoder_cpr" value="$(var encoder_cpr)"/>
+    </include>
+
+    <!-- Robot state publisher -->
+    <include file="$(find-pkg-share fastbot_description)/launch/robot_state_publisher.launch.py">
+        <arg name="robot_name" value="$(var robot_name)"/>
+        <arg name="robot_file" value="$(var robot_file)"/>
+    </include>
+
+    <!-- LSLiDAR ROS 2 driver -->
+    <include file="$(find-pkg-share lslidar_driver)/launch/lslidar_launch.py"/>
+
+       <!-- v4l2 Camera ROS 2 driver -->
+    <!-- Raspberry Pi camera -->
+    <node pkg="v4l2_camera" exec="v4l2_camera_node" name="v4l2_camera_node" namespace="$(var robot_name)" output="screen">
+        <param name="image_size" value="[320, 240]"/>
+        <param name="camera_frame_id" value="$(var robot_name)_camera"/>
+    </node>
+
+</launch>

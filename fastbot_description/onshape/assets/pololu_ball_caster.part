@@ -1,0 +1,14 @@
+{
+    "configuration": "default",
+    "documentId": "35c1798e9a64b438ac4bc91e",
+    "documentMicroversion": "80ea93273c877bfe428f9044",
+    "documentVersion": "fa442f93c82e56bc1e6d3b07",
+    "elementId": "275399341044fe1e00100b9a",
+    "fullConfiguration": "default",
+    "id": "MPS3nItElq5yMQ8NF",
+    "isStandardContent": false,
+    "name": "pololu-ball-caster <1>",
+    "partId": "JFL",
+    "suppressed": false,
+    "type": "Part"
+}

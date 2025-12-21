@@ -1,0 +1,129 @@
+<?xml version="1.0" ?>
+<robot name="fastbot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:macro name="fastbot_plugins" params="robot_name">
+
+    <!-- Differential drive plugin for gazebo -->
+    <gazebo>
+        <plugin name='${robot_name}_diff_drive' filename='libgazebo_ros_diff_drive.so'>
+            <ros>
+                <namespace>${robot_name}</namespace>
+                <argument>--ros-args --remap /cmd_vel:=/${robot_name}/cmd_vel /odom:=/${robot_name}/odom</argument>
+            </ros>
+
+            <!-- wheels -->
+            <left_joint>${robot_name}_left_wheel</left_joint>
+            <right_joint>${robot_name}_right_wheel</right_joint>
+
+            <!-- kinematics -->
+            <wheel_separation>0.12</wheel_separation>
+            <wheel_diameter>0.065</wheel_diameter>
+
+            <!-- limits -->
+            <max_wheel_torque>20</max_wheel_torque>
+            <max_wheel_acceleration>1.0</max_wheel_acceleration>
+
+            <!-- output -->
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>true</publish_odom_tf>
+            <publish_wheel_tf>true</publish_wheel_tf>
+
+            <odometry_frame>${robot_name}_odom</odometry_frame>
+            <robot_base_frame>${robot_name}_base_link</robot_base_frame>
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="${robot_name}_lslidar_n10">
+        <sensor name="${robot_name}_lslidar" type="ray">
+            <always_on>true</always_on>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>450</samples>
+                        <min_angle>-3.141593</min_angle>
+                        <max_angle>3.141593</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.02</min>
+                    <max>15.0</max>
+                    <resolution>0.01000</resolution> <!-- 1 cm resolution (realistic) -->
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.03</stddev> <!-- ±3 cm typical error -->
+                </noise>
+            </ray>
+            <plugin name="${robot_name}_scan" filename="libgazebo_ros_ray_sensor.so">
+                <ros>
+                    <remapping>~/out:=${robot_name}/scan</remapping>
+                </ros>
+                <output_type>sensor_msgs/LaserScan</output_type>
+                <frame_name>${robot_name}_lslidar_n10</frame_name>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="${robot_name}_camera">
+        <sensor type="camera" name="${robot_name}_camera">
+            <update_rate>30.0</update_rate> <!-- Real 30 fps at 1080p -->
+            <camera name="${robot_name}_head">
+                <!-- Rotate sensor -90° around X then -90 around Y, extrinsic rotations around camera frame-->
+                <pose>0 0 0.00 -1.5708 -1.5708 0.0</pose>  
+                <visualize>true</visualize>
+                <horizontal_fov>1.3962634</horizontal_fov> <!-- 62.2° in radians (≈ 1.085) raspicam 2-->
+                <image>
+                    <width>800</width> <!-- Real video res 1920x1080-->
+                    <height>800</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.02</near> <!-- Approx real min focus  0.1 -->
+                    <far>300</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            <plugin name="${robot_name}_camera_controller" filename="libgazebo_ros_camera.so">
+                <ros>
+                    <namespace>/</namespace>
+                </ros>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>${robot_name}_camera</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+        </sensor>
+    </gazebo>
+i
+    <!-- Low-friction ball caster for smooth sliding -->
+    <gazebo reference="${robot_name}_ball_caster">
+        <!-- Make it very slippery -->
+        <mu1 value="0.001"/>  <!-- Friction coefficient (very low) -->
+        <mu2 value="0.001"/>  <!-- Secondary friction -->
+        <kp value="1000000.0"/>  <!-- High stiffness to avoid sinking -->
+        <kd value="1.0"/>        <!-- Light damping -->
+
+        <!-- Optional: make it massless or very light to avoid inertia issues -->
+        <minDepth>0.001</minDepth>  <!-- Helps with contact stability -->
+
+        <!-- If you want even less resistance (almost zero friction) -->
+        <fdir1 value="1 0 0"/>  <!-- Friction direction (optional) -->
+    </gazebo>
+
+</xacro:macro>
+
+</robot>

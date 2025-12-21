@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<robot name="fastbot" xmlns:xacro="http://ros.org/wiki/xacro">
+  
+  <!-- Includes -->
+  <xacro:include filename="$(find fastbot_gazebo)/gazebo/fastbot_plugins.gazebo" />
+  <xacro:include filename="$(find fastbot_description)/models/urdf/fastbot_body.xacro" />
+   
+  <!-- Main Fastbot body -->
+  <xacro:fastbot_body robot_name="$(arg robot_name)" />
+
+  <!-- Only add Gazebo plugins -->
+  <xacro:fastbot_plugins robot_name="$(arg robot_name)" />
+
+</robot>

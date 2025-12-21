@@ -1,0 +1,14 @@
+{
+    "configuration": "default",
+    "documentId": "420272216c862b5e9c33b5fd",
+    "documentMicroversion": "275a05fd8767777d8a294fce",
+    "documentVersion": "e6905f0c6c06f49995d8d982",
+    "elementId": "1a2b94d98ca2612675436a92",
+    "fullConfiguration": "default",
+    "id": "MyIFhL9L3mzOCeGl5",
+    "isStandardContent": false,
+    "name": "LSLIDAR-N10 <1>",
+    "partId": "JFD",
+    "suppressed": false,
+    "type": "Part"
+}

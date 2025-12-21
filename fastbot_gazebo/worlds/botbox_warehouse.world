@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="empty">
+    <!-- Ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Basic lighting -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Simple obstacles -->
+    <include>
+      <uri>model://box</uri>
+      <pose>2 2 0 0 0 0</pose>
+      <name>box_obstacle_1</name>
+    </include>
+
+    <include>
+      <uri>model://cylinder</uri>
+      <pose>2 -3 0 0 0 0</pose>
+      <name>cylinder_obstacle</name>
+    </include>
+
+    <include>
+      <uri>model://sphere</uri>
+      <pose>-2 0 0 0 0 0</pose>
+      <name>sphere_obstacle</name>
+    </include>
+
+    <!-- Physics settings (optional, for stability) -->
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+  </world>
+</sdf>
