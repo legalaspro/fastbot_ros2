@@ -6,7 +6,9 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /RobotModel1/Status1
+        - /TF1
+        - /TF1/Frames1/fastbot_lslidar_n101
+        - /TF1/Tree1/fastbot_base_footprint1
       Splitter Ratio: 0.7176470756530762
     Tree Height: 359
   - Class: rviz_common/Selection
@@ -67,7 +69,11 @@ Visualization Manager:
           Value: true
         fastbot_motor_2:
           Value: true
-      Marker Scale: 1
+        fastbot_wheel_left:
+          Value: true
+        fastbot_wheel_right:
+          Value: true
+      Marker Scale: 0.5
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -75,11 +81,18 @@ Visualization Manager:
       Tree:
         fastbot_base_footprint:
           fastbot_base_link:
-            fastbot_ball_caster: {}
-            fastbot_camera: {}
-            fastbot_lslidar_n10: {}
-            fastbot_motor_1: {}
-            fastbot_motor_2: {}
+            fastbot_ball_caster:
+              {}
+            fastbot_camera:
+              {}
+            fastbot_lslidar_n10:
+              {}
+            fastbot_motor_1:
+              fastbot_wheel_right:
+                {}
+            fastbot_motor_2:
+              fastbot_wheel_left:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -167,9 +180,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 182
+      Max Intensity: 179
       Min Color: 0; 0; 0
-      Min Intensity: 4
+      Min Intensity: 3
       Name: LaserScan
       Position Transformer: XYZ
       Selectable: true
@@ -199,6 +212,13 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /fastbot/image_raw
+      Value: true
+    - Class: rviz_default_plugins/Axes
+      Enabled: true
+      Length: 0.5
+      Name: Axes
+      Radius: 0.019999999552965164
+      Reference Frame: <Fixed Frame>
       Value: true
   Enabled: true
   Global Options:
@@ -246,25 +266,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 3.2315688133239746
+      Distance: 2.2447683811187744
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 0.022343821823596954
+        Y: -0.11048690974712372
+        Z: 0.10484247654676437
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6253980994224548
+      Pitch: 0.5553979277610779
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.290398359298706
+      Yaw: 1.3703994750976562
     Saved: ~
 Window Geometry:
   Displays:

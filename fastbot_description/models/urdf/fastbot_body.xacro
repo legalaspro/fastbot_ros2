@@ -247,35 +247,33 @@
     <!-- Link lslidar_n10 -->
     <link name="${robot_name}_lslidar_n10">
         <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="1e-09"/>
-        <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1e-09"/>
+            <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
         </inertial>
         <!-- Part lslidar_n10 -->
         <visual>
-        <origin xyz="-0.06 0.074 -0.14585" rpy="3.79087e-17 -5.94511e-32 1.77248e-62"/>
-        <geometry>
-            <mesh filename="package://fastbot_description/onshape/assets/lslidar_n10.stl"/>
-        </geometry>
-        <material name="lslidar_n10_material">
-            <color rgba="0.0980392 0.0980392 0.0980392 1"/>
-        </material>
+            <origin xyz="0.074 0.06 -0.14585" rpy="0 0 -1.5708"/>
+            <geometry>
+                <mesh filename="package://fastbot_description/onshape/assets/lslidar_n10.stl"/>
+            </geometry>
+            <material name="lslidar_n10_material">
+                <color rgba="0.0980392 0.0980392 0.0980392 1"/>
+            </material>
         </visual>
         <collision>
-        <origin xyz="-0.06 0.074 -0.14585" rpy="3.79087e-17 -5.94511e-32 1.77248e-62"/>
-        <geometry>
-            <mesh filename="package://fastbot_description/onshape/assets/lslidar_n10.stl"/>
-        </geometry>
+            <origin xyz="0.074 0.06 -0.14585" rpy="0 0 -1.5708"/>
+            <geometry>
+                <mesh filename="package://fastbot_description/onshape/assets/lslidar_n10.stl"/>
+            </geometry>
         </collision>
     </link>
 
     <!-- Joint from base_link to lslidar_n10 -->
     <joint name="${robot_name}_lidar" type="fixed">
-        <origin xyz="-0.058944 -0.0168289 0.147435" rpy="-2.95823e-31 -1.74068e-33 -1.5708"/>
+        <origin xyz="-0.058944 -0.0168289 0.147435" rpy="0 0 0"/>
         <parent link="${robot_name}_base_link"/>
         <child link="${robot_name}_lslidar_n10"/>
-        <axis xyz="0 0 1"/>
-        <limit effort="10" velocity="10"/>
     </joint>
 
     <!-- Link raspicam -->
