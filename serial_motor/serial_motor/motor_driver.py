@@ -10,6 +10,7 @@ from rclpy.node import Node
 from typing import List, Optional
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Twist
+from sensor_msgs.msg import JointState
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.callback_groups import ReentrantCallbackGroup
 from serial_motor_msgs.msg import MotorVels, EncoderVals
@@ -70,6 +71,7 @@ class MotorDriver(Node):
         )
         self.motor_vels_pub_ = self.create_publisher(MotorVels, "motor_vels", 10)
         self.encoder_pub_ = self.create_publisher(EncoderVals, "encoder_vals", 10)
+        self.joint_state_pub_ = self.create_publisher(JointState, "joint_states", 10)
         self.odom_pub_ = self.create_publisher(Odometry, "odom", 10)
 
         # Timer callback to continuously publish odometry
@@ -103,7 +105,7 @@ class MotorDriver(Node):
     def argument_parsing(self, args):
         parser = argparse.ArgumentParser(description="Arguments for frame names.")
         parser.add_argument(
-            "-robot_name_value",
+            "-robot_name",
             type=str,
             metavar="botbox_default",
             default="fastbot_X",
@@ -225,8 +227,32 @@ class MotorDriver(Node):
             enc_msg.mot_2_enc_val = self.last_m2_enc
             self.encoder_pub_.publish(enc_msg)
 
+            # Publish joint states for the wheels
+            self.publish_joint_states()
+
             # Publish odometry based on encoder readings
             # self.publish_odometry()
+
+    def publish_joint_states(self) -> None:
+        """Publish joint states for the wheel joints."""
+        joint_state_msg = JointState()
+        joint_state_msg.header.stamp = self.get_clock().now().to_msg()
+
+        # Joint names using robot_name from arguments
+        left_wheel_joint = self.args.robot_name + "_left_wheel"
+        right_wheel_joint = self.args.robot_name + "_right_wheel"
+
+        # Populate joint state message
+        joint_state_msg.name = [left_wheel_joint, right_wheel_joint]
+        joint_state_msg.position = [
+            self.last_m1_enc * (2 * math.pi / self.encoder_cpr),  # left
+            self.last_m2_enc * (2 * math.pi / self.encoder_cpr)   # right
+        ]
+        joint_state_msg.velocity = [self.m1_spd, self.m2_spd]  # Motor speeds in rad/s
+        joint_state_msg.effort = []  # We don't measure effort
+
+        # Publish the joint state
+        self.joint_state_pub_.publish(joint_state_msg)
 
     def publish_odometry(self) -> None:
         """Publish odometry data based on encoder readings."""
@@ -255,8 +281,8 @@ class MotorDriver(Node):
         # Create and publish odometry message
         odom_msg = Odometry()
         odom_msg.header.stamp = self.get_clock().now().to_msg()
-        odom_msg.header.frame_id = self.args.robot_name_value + "_odom"
-        odom_msg.child_frame_id = self.args.robot_name_value + "_base_link"
+        odom_msg.header.frame_id = self.args.robot_name + "_odom"
+        odom_msg.child_frame_id = self.args.robot_name + "_base_link"
 
         # Set position
         odom_msg.pose.pose.position.x = self.x
