@@ -11,7 +11,7 @@ find_package(urdf REQUIRED)
 find_package(xacro REQUIRED)
 
 install(
-  DIRECTORY launch onshape models
+  DIRECTORY launch onshape models rviz
   DESTINATION share/${PROJECT_NAME}
 )
 
