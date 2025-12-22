@@ -2,6 +2,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
 import xacro
 
 from launch.actions import DeclareLaunchArgument
@@ -13,7 +14,10 @@ def launch_setup(context, *args, **kwargs):
 
     robot_name = LaunchConfiguration("robot_name").perform(context)
     robot_file = LaunchConfiguration("robot_file").perform(context)
-    use_sim_time = LaunchConfiguration("use_sim_time")
+    use_sim_time_config = LaunchConfiguration("use_sim_time")
+
+    # Convert use_sim_time to ParameterValue with explicit bool type
+    use_sim_time = ParameterValue(use_sim_time_config, value_type=bool)
 
     robot_description_topic_name = "/" + robot_name + "_robot_description"
     robot_state_publisher_name = robot_name + "_robot_state_publisher"
