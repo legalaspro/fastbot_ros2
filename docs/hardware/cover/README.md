@@ -6,6 +6,11 @@ Optional decorative cover for the Fastbot robot.
 
 **[Robot Cover Design](https://cad.onshape.com/documents/0a34668587f2e2da42d17d97/w/df32b6bb6912ecfe0c0a09c3/e/38b8184e23d323bb4ac25551)**
 
+<p align="center">
+  <img src="robot_cover.png" alt="Cover CAD" width="45%">
+  <img src="fastbot_cover.jpeg" alt="Fastbot Cover" width="45%">
+</p>
+
 ## 3D Printing
 
 ### Files
