@@ -97,16 +97,21 @@ Check that the camera is publishing images:
 # List topics
 ros2 topic list
 
-# You should see:
+# When launched standalone:
 # /camera_info
 # /image_raw
 # /image_raw/compressed
 
-# Check image publishing rate
-ros2 topic hz /image_raw
+# When launched via bringup (namespaced as fastbot_camera):
+# /fastbot_camera/camera_info
+# /fastbot_camera/image_raw
+# /fastbot_camera/image_raw/compressed
+
+# Check image publishing rate (adjust topic based on launch method)
+ros2 topic hz /fastbot_camera/image_raw
 
 # Echo camera info
-ros2 topic echo /camera_info
+ros2 topic echo /fastbot_camera/camera_info
 ```
 
 ## Configuration

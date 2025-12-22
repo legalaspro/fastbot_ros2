@@ -17,8 +17,15 @@ def generate_launch_description():
         description='Frame ID for the lidar data'
     )
 
+    scan_topic_arg = DeclareLaunchArgument(
+        'scan_topic',
+        default_value='/scan',
+        description='Topic name for the laser scan data'
+    )
+
     # Get launch configurations
     frame_id = LaunchConfiguration('frame_id')
+    scan_topic = LaunchConfiguration('scan_topic')
 
     driver_dir = os.path.join(get_package_share_directory('lslidar_driver'), 'params', 'lsx10.yaml')
 
@@ -29,7 +36,8 @@ def generate_launch_description():
                                 emulate_tty=True,
                                 namespace='',
                                 parameters=[driver_dir,
-                                           {'frame_id': frame_id}],
+                                           {'frame_id': frame_id,
+                                            'scan_topic': scan_topic}],
                                 )
 
 
@@ -45,6 +53,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         frame_id_arg,
+        scan_topic_arg,
         driver_node,
         # rviz_node,
     ])

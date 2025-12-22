@@ -81,18 +81,13 @@ Visualization Manager:
       Tree:
         fastbot_base_footprint:
           fastbot_base_link:
-            fastbot_ball_caster:
-              {}
-            fastbot_camera:
-              {}
-            fastbot_lslidar_n10:
-              {}
+            fastbot_ball_caster: {}
+            fastbot_camera: {}
+            fastbot_lslidar_n10: {}
             fastbot_motor_1:
-              fastbot_wheel_right:
-                {}
+              fastbot_wheel_right: {}
             fastbot_motor_2:
-              fastbot_wheel_left:
-                {}
+              fastbot_wheel_left: {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -195,7 +190,7 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /scan
+        Value: /fastbot/scan
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
@@ -211,7 +206,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /fastbot/image_raw
+        Value: /fastbot_camera/image_raw
       Value: true
     - Class: rviz_default_plugins/Axes
       Enabled: true

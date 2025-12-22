@@ -66,7 +66,7 @@ This repository includes the `Lslidar_ROS2_driver` package pre-configured for th
    The driver will:
 
    - Connect to the LiDAR via serial interface (`/dev/lslidar`)
-   - Publish laser scan data to `/scan` topic
+   - Publish laser scan data to `/fastbot/scan` topic (when launched via bringup)
    - Configuration is pre-set in `lsx10.yaml` for N10 LiDAR
 
 ## Testing
@@ -79,14 +79,17 @@ Check that the LiDAR is publishing data:
 # List topics
 ros2 topic list
 
-# You should see:
+# When launched standalone:
 # /scan
 
-# Echo scan data
-ros2 topic echo /scan
+# When launched via bringup:
+# /fastbot/scan
+
+# Echo scan data (adjust topic name based on launch method)
+ros2 topic echo /fastbot/scan
 
 # Check scan rate
-ros2 topic hz /scan
+ros2 topic hz /fastbot/scan
 ```
 
 ## Configuration
@@ -96,14 +99,16 @@ The LiDAR driver configuration is pre-configured in `Lslidar_ROS2_driver/lslidar
 - **lidar_name**: N10
 - **interface_selection**: serial
 - **serial*port***: /dev/lslidar
-- **frame_id**: laser_link
-- **scan_topic**: /scan
+- **frame_id**: laser_link (overridden by launch argument)
+- **scan_topic**: /scan (overridden to `/fastbot/scan` by bringup launch)
 - **min_range**: 0.02m
 - **max_range**: 12.0m
-- **pubScan**: true (publishes `/scan` topic)
+- **pubScan**: true (publishes scan topic)
 - **pubPointCloud2**: false (point cloud disabled by default)
 
 All settings are optimized for the N10 LiDAR and ready to use!
+
+**Note**: When using `fastbot_bringup`, the `frame_id` is set to `fastbot_lslidar_n10` and `scan_topic` is set to `/fastbot/scan` to match the robot's namespace and TF tree.
 
 ## Resources
 

@@ -31,11 +31,12 @@
     <!-- LSLiDAR ROS 2 driver -->
     <include file="$(find-pkg-share lslidar_driver)/launch/lslidar_launch.py">
         <arg name="frame_id" value="$(var lidar_frame_id)"/>
+        <arg name="scan_topic" value="/$(var robot_name)/scan"/>
     </include>
 
        <!-- v4l2 Camera ROS 2 driver -->
     <!-- Raspberry Pi camera -->
-    <node pkg="v4l2_camera" exec="v4l2_camera_node" name="v4l2_camera_node" namespace="$(var robot_name)" output="screen">
+    <node pkg="v4l2_camera" exec="v4l2_camera_node" name="v4l2_camera_node" namespace="$(var robot_name)_camera" output="screen">
         <param name="image_size" value="[320, 240]"/>
         <param name="camera_frame_id" value="$(var robot_name)_camera"/>
     </node>
