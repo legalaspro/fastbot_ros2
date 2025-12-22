@@ -9,6 +9,7 @@
     <arg name="baud_rate" default="57600"/>
     <arg name="loop_rate" default="30"/>
     <arg name="encoder_cpr" default="2550"/>
+    <arg name="lidar_frame_id" default="fastbot_lslidar_n10"/>
 
     <!-- Differential serial motor driver -->
     <include file="$(find-pkg-share serial_motor)/launch/serial_motor.launch.py">
@@ -27,7 +28,9 @@
     </include>
 
     <!-- LSLiDAR ROS 2 driver -->
-    <include file="$(find-pkg-share lslidar_driver)/launch/lslidar_launch.py"/>
+    <include file="$(find-pkg-share lslidar_driver)/launch/lslidar_launch.py">
+        <arg name="frame_id" value="$(var lidar_frame_id)"/>
+    </include>
 
        <!-- v4l2 Camera ROS 2 driver -->
     <!-- Raspberry Pi camera -->
