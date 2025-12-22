@@ -1,5 +1,9 @@
 # Fastbot ROS2
 
+[![ROS2 Humble](https://img.shields.io/badge/ROS2-Humble-blue)](https://docs.ros.org/en/humble/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi-red)](https://www.raspberrypi.org/)
+
 A ROS2 workspace for the Fastbot mobile robot platform with differential drive, LiDAR sensor integration, and Gazebo simulation support.
 
 <p align="center">
@@ -7,25 +11,29 @@ A ROS2 workspace for the Fastbot mobile robot platform with differential drive, 
   <img src="fastbot_real.jpeg" alt="Fastbot Real" width="45%">
 </p>
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Credits](#-credits)
+- [Packages](#packages)
+- [Documentation](#documentation)
+- [Quick Start](#quick-start)
+- [Additional Usage](#additional-usage)
+- [Build Guide](#build-guide)
+- [License](#license)
+
 ## Overview
 
 This repository contains ROS2 packages for controlling and simulating the Fastbot robot. The project includes robot description files, hardware drivers, simulation environments, and launch configurations.
 
 ---
 
-## 🎓 Credits & Learning Resources
+## 🎓 Credits
 
-**This project is inspired by and builds upon [The Construct's Fastbot Course](https://www.theconstruct.ai/fastbot/)** - an excellent resource for learning robotics hands-on by building your own robot from scratch!
+**This project is inspired by [The Construct's FastBot](https://www.theconstruct.ai/fastbot/)** - an open-source ROS 2 robot kit for hands-on robotics learning.
+Want to learn ROS 2 and robotics? Check out [The Construct's courses](https://www.theconstruct.ai/) for comprehensive hands-on training.
 
-If you want to learn robotics by doing, check out The Construct's Fastbot course. It teaches you how to:
-
-- Build a real mobile robot step-by-step
-- Integrate sensors and actuators
-- Program with ROS2
-- Implement navigation and SLAM
-- Learn by building, not just theory!
-
-**This repository is for people who want to learn robotics themselves and build their own robots.** 🤖
+This repository provides the complete ROS 2 software stack for building and programming your own FastBot robot. 🤖
 
 ---
 
