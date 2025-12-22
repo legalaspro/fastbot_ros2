@@ -216,6 +216,25 @@ This will start:
 
 ## Additional Usage
 
+### Visualization with RViz
+
+After launching the robot with bringup, you can visualize the robot in RViz:
+
+```bash
+# First, launch the robot bringup (in one terminal)
+ros2 launch fastbot_bringup bringup.launch.xml
+
+# Then, launch RViz for visualization (in another terminal)
+ros2 launch fastbot_description display.launch.py
+```
+
+The RViz display will show:
+
+- Robot model with real-time joint states
+- TF frames
+- LiDAR scan data
+- Camera image feed
+
 ### Gazebo Simulation
 
 Launch Gazebo simulation:
