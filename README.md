@@ -11,6 +11,13 @@ A ROS2 workspace for the Fastbot mobile robot platform with differential drive, 
   <img src="fastbot_real.jpeg" alt="Fastbot Real" width="45%">
 </p>
 
+<p align="center">
+  <a href="https://youtube.com/shorts/lB1yVCzFulA">
+    <img src="https://img.youtube.com/vi/lB1yVCzFulA/maxresdefault.jpg" alt="Fastbot in Action" width="60%">
+  </a>
+</p>
+<p align="center"><em>🎥 Click to watch Fastbot in action!</em></p>
+
 ## Table of Contents
 
 - [Overview](#overview)
