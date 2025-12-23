@@ -204,7 +204,7 @@ With the Raspberry Pi running ROS2 and connected to the Arduino, you're ready to
    ```bash
    mkdir -p ~/ros2_ws/src
    cd ~/ros2_ws/src
-   git clone <repository-url> fastbot_ros2
+   git clone https://github.com/legalaspro/fastbot_ros2.git fastbot_ros2
    cd ~/ros2_ws
    colcon build --symlink-install
    source install/setup.bash

@@ -199,7 +199,7 @@ mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws/src
 
 # Clone the repository
-git clone <repository-url> fastbot_ros2
+git clone https://github.com/legalaspro/fastbot_ros2.git fastbot_ros2
 
 # Build the workspace
 cd ~/ros2_ws
